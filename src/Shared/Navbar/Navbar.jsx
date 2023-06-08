@@ -45,7 +45,7 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost font-display text-4xl normal-case">
+        <a className="btn btn-ghost font-display text-3xl normal-case">
           Champions Sports Camp
         </a>
       </div>
