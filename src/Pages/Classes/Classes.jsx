@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useBookmark from "../../hooks/useBookmark";
 
 const Classes = () => {
+  const [, refetch] = useBookmark();
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Classes = () => {
 
   const handleAddToBookmarks = (singleClass) => {
     console.log(singleClass);
-    if (user) {
+    if (user && user.email) {
       const bookmarkedItem = {
         classId: singleClass._id,
         name: singleClass.name,
@@ -37,6 +39,7 @@ const Classes = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",

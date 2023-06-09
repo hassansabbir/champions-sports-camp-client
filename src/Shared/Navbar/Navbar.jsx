@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import logoW from "../../assets/logoB.png";
+import useBookmark from "../../hooks/useBookmark";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [bookmark] = useBookmark();
 
   const handleLogOut = () => {
     logOut()
@@ -24,7 +26,14 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
       <li className="text-xl font-semibold">
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">
+          <div className="indicator">
+            <span className="indicator-item badge badge-secondary">
+              {bookmark?.length || 0}
+            </span>
+            Dashboard
+          </div>
+        </Link>
       </li>
     </>
   );

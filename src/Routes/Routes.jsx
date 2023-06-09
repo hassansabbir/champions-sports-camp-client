@@ -6,6 +6,9 @@ import SignUp from "../Pages/SignUp/SignUp";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Classes from "../Pages/Classes/Classes";
 import Dashboard from "../Layout/Dashboard";
+import Profile from "../Pages/Dashboard/Profile/Profile";
+import Bookmark from "../Pages/Dashboard/Bookmark/Bookmark";
+import Enrolled from "../Pages/Dashboard/Enrolled/Enrolled";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +36,20 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
-    children: [],
+    children: [
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "bookmark",
+        element: <Bookmark></Bookmark>,
+      },
+      {
+        path: "enrolled",
+        element: <Enrolled></Enrolled>,
+      },
+    ],
   },
   {
     path: "*",

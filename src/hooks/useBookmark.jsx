@@ -5,11 +5,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 const useBookmark = () => {
   const { user } = useContext(AuthContext);
 
-  const {
-    isLoading,
-    data: bookmark = [],
-    refetch,
-  } = useQuery({
+  const { refetch, data: bookmark = [] } = useQuery({
     queryKey: ["bookmarks", user?.email],
     queryFn: async () => {
       const response = await fetch(
@@ -18,6 +14,6 @@ const useBookmark = () => {
       return response.json();
     },
   });
-  return [bookmark, isLoading, refetch];
+  return [bookmark, refetch];
 };
 export default useBookmark;

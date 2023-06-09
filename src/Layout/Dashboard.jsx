@@ -1,4 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import { FaBookmark, FaHome } from "react-icons/fa";
+import { RxAvatar } from "react-icons/rx";
+import { LuLayoutList } from "react-icons/lu";
+import { HiBadgeCheck } from "react-icons/hi";
 
 const Dashboard = () => {
   return (
@@ -15,14 +19,41 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+        <ul className="menu p-4 w-80 h-full pt-20 bg-base-200 text-2xl font-semibold">
           {/* Sidebar content here */}
+          <div className="divider"></div>
           <li>
-            <a>Sidebar Item 1</a>
+            <Link to="/dashboard/profile">
+              <RxAvatar /> User Profile
+            </Link>
           </li>
+          <div className="divider"></div>
+
           <li>
-            <a>Sidebar Item 2</a>
+            <Link to="/dashboard/bookmark">
+              <FaBookmark /> Bookmark
+            </Link>
           </li>
+          <div className="divider"></div>
+          <li>
+            <Link to="/dashboard/enrolled">
+              <HiBadgeCheck /> Enrolled
+            </Link>
+          </li>
+          <div className="divider mb-2"></div>
+          <div className="divider"></div>
+          <li>
+            <Link to="/dashboard/">
+              <FaHome /> Home
+            </Link>
+          </li>
+          <div className="divider"></div>
+          <li>
+            <Link to="/dashboard/classes">
+              <LuLayoutList /> All Classes
+            </Link>
+          </li>
+          <div className="divider"></div>
         </ul>
       </div>
     </div>
