@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import logoW from "../../assets/logoB.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,10 +21,10 @@ const Navbar = () => {
         <Link>Instructors</Link>
       </li>
       <li className="text-xl font-semibold">
-        <Link>Classes</Link>
+        <Link to="/classes">Classes</Link>
       </li>
       <li className="text-xl font-semibold">
-        <Link>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
     </>
   );
@@ -55,24 +56,24 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost font-display text-3xl normal-case">
+        <img className="w-20 rounded-full" src={logoW} alt="" />
+        <a className="btn btn-ghost font-display hidden md:block text-3xl normal-case">
           Champions Sports Camp
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end space-x-5">
         <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
           {user && (
-            <img
-              className="w-8 h-8 md:w-12 md:h-12 rounded-full"
-              src={user.photoURL}
-              alt=""
-            />
+            <div className="avatar">
+              <div className="w-10 rounded-full ">
+                <img src={user?.photoURL} />
+              </div>
+            </div>
           )}
         </div>
-
         {user?.email ? (
           <>
             <button onClick={handleLogOut} className="btn btn-active btn-ghost">
