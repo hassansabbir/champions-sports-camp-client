@@ -6,10 +6,11 @@ import SignUp from "../Pages/SignUp/SignUp";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Classes from "../Pages/Classes/Classes";
 import Dashboard from "../Layout/Dashboard";
-import Profile from "../Pages/Dashboard/Profile/Profile";
 import Bookmark from "../Pages/Dashboard/Bookmark/Bookmark";
 import Enrolled from "../Pages/Dashboard/Enrolled/Enrolled";
 import ManageUsers from "../Pages/Dashboard/adminPages/ManageUsers";
+import ManageClasses from "../Pages/Dashboard/adminPages/ManageClasses";
+import AddClass from "../Pages/Dashboard/instructorsPages/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -43,8 +44,15 @@ export const router = createBrowserRouter([
         element: <ManageUsers></ManageUsers>,
       },
       {
-        path: "profile",
-        element: <Profile></Profile>,
+        path: "manageClasses",
+        element: <ManageClasses></ManageClasses>,
+      },
+      {
+        path: "addClass",
+        element: <AddClass></AddClass>,
+      },
+      {
+        path: "manageClasses",
       },
       {
         path: "bookmark",

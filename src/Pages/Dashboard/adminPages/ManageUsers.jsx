@@ -1,10 +1,53 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
+
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            title: `${user.name} is added as an Admin.`,
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+        }
+      });
+  };
+
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            title: `${user.name} is added as an Instructor.`,
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+        }
+      });
+  };
 
   return (
     <div className="w-full">
@@ -29,14 +72,28 @@ const ManageUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button className="btn bg-amber-800 text-white btn-sm">
-                    Make Admin
-                  </button>
+                  {user?.role === "admin" ? (
+                    "ADMIN"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn bg-amber-800 text-white btn-sm"
+                    >
+                      Make Admin
+                    </button>
+                  )}
                 </td>
                 <td>
-                  <button className="btn bg-amber-800 text-white btn-sm">
-                    Make Instructor
-                  </button>
+                  {user?.role === "instructor" ? (
+                    "Instructor"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeInstructor(user)}
+                      className="btn bg-amber-800 text-white btn-sm"
+                    >
+                      Make Instructor
+                    </button>
+                  )}
                 </td>
               </tr>
             </tbody>
