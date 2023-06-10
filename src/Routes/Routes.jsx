@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import Bookmark from "../Pages/Dashboard/Bookmark/Bookmark";
 import Enrolled from "../Pages/Dashboard/Enrolled/Enrolled";
+import ManageUsers from "../Pages/Dashboard/adminPages/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>,
+      },
       {
         path: "profile",
         element: <Profile></Profile>,

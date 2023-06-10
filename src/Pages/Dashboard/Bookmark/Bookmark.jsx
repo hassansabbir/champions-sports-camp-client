@@ -1,7 +1,92 @@
+import { FaTrashAlt } from "react-icons/fa";
+import useBookmark from "../../../hooks/useBookmark";
+import Swal from "sweetalert2";
+
 const Bookmark = () => {
+  const [bookmark, refetch] = useBookmark();
+  const total = bookmark.reduce((sum, item) => item.price + sum, 0).toFixed(2);
+
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/bookmarks/${item._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
+
   return (
-    <div>
-      <h2>This is Bookmark</h2>
+    <div className="w-full text-center">
+      <h2 className="text-5xl font-display font-bold">Bookmarked Classes</h2>
+      <p className="text-3xl my-5">Total Price: {total}</p>
+      <div className="text-end me-16">
+        <button className="btn">Pay</button>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Photo & Class Name</th>
+              <th>Instructor</th>
+              <th>Price</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          {bookmark.map((item, index) => (
+            <tbody key={item._id}>
+              <tr>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={item.image} alt={item.name} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{item.name}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {item.instructorName}
+                  <br />
+                  <span className="badge badge-ghost badge-sm">
+                    Desktop Support Technician
+                  </span>
+                </td>
+                <td>$ {item.price}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(item)}
+                    className="btn btn-circle text-white bg-red-400"
+                  >
+                    <FaTrashAlt className="w-5 h-5" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
     </div>
   );
 };

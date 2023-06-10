@@ -26,7 +26,7 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
       <li className="text-xl font-semibold">
-        <Link to="/dashboard">
+        <Link to="/dashboard/bookmark">
           <div className="indicator">
             <span className="indicator-item badge badge-secondary">
               {bookmark?.length || 0}

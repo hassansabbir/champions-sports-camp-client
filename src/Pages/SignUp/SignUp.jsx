@@ -25,23 +25,34 @@ const SignUp = () => {
 
       updateUserProfile(data.name, data.photoUrl)
         .then(() => {
-          console.log("user profile updated");
-          reset();
-          Swal.fire({
-            title: "User created successfully. Please login now.",
-            showClass: {
-              popup: "animate__animated animate__fadeInDown",
-            },
-            hideClass: {
-              popup: "animate__animated animate__fadeOutUp",
-            },
-          });
-          logOut()
-            .then(() => {
-              navigate("/login");
-            })
-            .catch((err) => {
-              console.log(err);
+          const savedUserInfo = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(savedUserInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                console.log("user profile updated");
+                reset();
+                Swal.fire({
+                  title: "User created successfully. Please login now.",
+                  showClass: {
+                    popup: "animate__animated animate__fadeInDown",
+                  },
+                  hideClass: {
+                    popup: "animate__animated animate__fadeOutUp",
+                  },
+                });
+                logOut()
+                  .then(() => {
+                    navigate("/login");
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }
             });
         })
         .catch((err) => {

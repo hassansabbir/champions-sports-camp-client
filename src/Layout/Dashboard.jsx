@@ -20,21 +20,22 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full pt-20 bg-base-200 text-2xl font-semibold">
-          {/* Sidebar content here */}
+          <div className="divider"></div>
+          <li>
+            <Link to="/dashboard/manageUsers">Manage Users</Link>
+          </li>
           <div className="divider"></div>
           <li>
             <Link to="/dashboard/profile">
               <RxAvatar /> User Profile
             </Link>
           </li>
-          <div className="divider"></div>
 
           <li>
             <Link to="/dashboard/bookmark">
               <FaBookmark /> Bookmark
             </Link>
           </li>
-          <div className="divider"></div>
           <li>
             <Link to="/dashboard/enrolled">
               <HiBadgeCheck /> Enrolled
@@ -43,13 +44,13 @@ const Dashboard = () => {
           <div className="divider mb-2"></div>
           <div className="divider"></div>
           <li>
-            <Link to="/dashboard/">
+            <Link to="/">
               <FaHome /> Home
             </Link>
           </li>
           <div className="divider"></div>
           <li>
-            <Link to="/dashboard/classes">
+            <Link to="/classes">
               <LuLayoutList /> All Classes
             </Link>
           </li>
