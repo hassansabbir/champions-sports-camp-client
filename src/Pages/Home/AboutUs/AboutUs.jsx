@@ -6,9 +6,9 @@ const AboutUs = () => {
       <h2 className="text-5xl text-center my-20 font-display">
         What is Champions Sports Summer Camp?
       </h2>
-      <div className="flex justify-center items-center my-20">
+      <div className="md:flex justify-center items-center my-20">
         <img className="w-[650px] h-[500px]" src={summerCampImg} alt="" />
-        <div>
+        <div className="px-5 md:px-0">
           <h2 className="text-3xl my-10 font-bold text-center">
             An Ideal Camp for <br /> Reanimate Hidden Talent
           </h2>
@@ -26,7 +26,7 @@ const AboutUs = () => {
               quisquam officia tempore.
             </p>
             <br />
-            <div className="flex justify-around">
+            <div className="md:flex justify-around">
               <div>
                 <h2 className="text-2xl font-bold">Yihra alfh</h2>
                 <ul>
@@ -51,14 +51,7 @@ const AboutUs = () => {
                   <li className="list-disc">Oafhbku kuf</li>
                 </ul>
               </div>
-            </div>{" "}
-            <br />
-            <li className="list-disc">
-              Dku lor sit amet, consectetur adipisicing elit. Porro!
-            </li>
-            <li className="list-disc">
-              lor sit amet, consectetur adipisicing elit. kjzfsgd sdgh Porro!
-            </li>
+            </div>
           </ul>
         </div>
       </div>

@@ -15,12 +15,14 @@ const MyClasses = () => {
 
   return (
     <div className="w-full">
-      <h2 className="text-5xl text-center font-display">My Added Classes</h2>
+      <h2 className="text-5xl text-center my-20 font-display">
+        My Added Classes
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-lg">
               <th>#</th>
               <th>Name</th>
               <th>Available Seats</th>
@@ -35,7 +37,7 @@ const MyClasses = () => {
               <tr key={myClass._id}>
                 <th>{index + 1}</th>
                 <td>{myClass.name}</td>
-                <td>{myClass.availableSeats}</td>
+                <td className="text-center">{myClass.availableSeats}</td>
                 <td>{myClass.price}</td>
                 <td>{myClass.status}</td>
                 <td>{myClass.feedback}</td>

@@ -72,7 +72,7 @@ const Classes = () => {
       <h2 className="text-5xl font-display text-center">
         All of Our Classes is here in one page. <br /> Enroll now!!
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3  gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 my-20 gap-10">
         {approvedClasses.map((singleClass) => (
           <div
             key={singleClass._id}

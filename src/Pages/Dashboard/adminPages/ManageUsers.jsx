@@ -6,7 +6,7 @@ const ManageUsers = () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
-
+  console.log(users);
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
@@ -48,12 +48,14 @@ const ManageUsers = () => {
         }
       });
   };
+  console.log("helloo world");
 
   return (
     <div className="w-full">
       <h2 className="text-5xl font-display text-center font-semibold">
         Manage All Users
       </h2>
+
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>

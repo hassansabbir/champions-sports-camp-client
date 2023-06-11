@@ -17,6 +17,8 @@ import Feedback from "../Pages/Dashboard/adminPages/Feedback";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import StudentRoute from "./StudentRoute";
+import Instructors from "../Pages/Instructors/Instructors";
+import Payment from "../Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors></Instructors>,
       },
       {
         path: "/classes",
@@ -98,6 +104,12 @@ export const router = createBrowserRouter([
             <Bookmark></Bookmark>
           </StudentRoute>
         ),
+      },
+      {
+        path: "payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookmarks/${params.id}`),
       },
       {
         path: "enrolled",

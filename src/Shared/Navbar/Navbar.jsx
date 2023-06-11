@@ -2,11 +2,24 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import logoW from "../../assets/logoB.png";
-import useBookmark from "../../hooks/useBookmark";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import useStudent from "../../hooks/useStudent";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [bookmark] = useBookmark();
+
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+  const [isStudent, isStudentLoading] = useStudent();
+
+  if (isAdminLoading || isInstructorLoading || isStudentLoading) {
+    return (
+      <div className="text-center mt-72">
+        <span className="loading  loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   const handleLogOut = () => {
     logOut()
@@ -20,21 +33,32 @@ const Navbar = () => {
         <Link>Home</Link>
       </li>
       <li className="text-xl font-semibold">
-        <Link>Instructors</Link>
+        <Link to="/instructors">Instructors</Link>
       </li>
       <li className="text-xl font-semibold">
         <Link to="/classes">Classes</Link>
       </li>
-      <li className="text-xl font-semibold">
-        <Link to="/dashboard/bookmark">
-          <div className="indicator">
-            <span className="indicator-item badge badge-secondary">
-              {bookmark?.length || 0}
-            </span>
-            Dashboard
-          </div>
-        </Link>
-      </li>
+      {isAdmin.admin && (
+        <>
+          <li className="text-xl font-semibold">
+            <Link to="/dashboard/manageUsers">Dashboard</Link>
+          </li>
+        </>
+      )}
+      {isInstructor.instructor && (
+        <>
+          <li className="text-xl font-semibold">
+            <Link to="/dashboard/addClass">Dashboard</Link>
+          </li>
+        </>
+      )}
+      {isStudent.student && (
+        <>
+          <li className="text-xl font-semibold">
+            <Link to="/dashboard/bookmark">Dashboard</Link>
+          </li>
+        </>
+      )}
     </>
   );
 

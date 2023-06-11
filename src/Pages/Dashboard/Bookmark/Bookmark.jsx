@@ -1,6 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useBookmark from "../../../hooks/useBookmark";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Bookmark = () => {
   const [bookmark, refetch] = useBookmark();
@@ -68,7 +69,10 @@ const Bookmark = () => {
                 <td>{item.instructorName}</td>
                 <td>$ {item.price}</td>
                 <td>
-                  <button className="btn btn-sm">Pay Now</button>
+                  <Link to={`/dashboard/payment/${item._id}`}>
+                    {" "}
+                    <button className="btn btn-sm">Pay Now</button>
+                  </Link>
                 </td>
                 <td>
                   <button
