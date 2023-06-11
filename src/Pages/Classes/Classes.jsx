@@ -20,6 +20,8 @@ const Classes = () => {
       });
   }, []);
 
+  const approvedClasses = classes.filter((cls) => cls.status === "approved");
+
   const handleAddToBookmarks = (singleClass) => {
     console.log(singleClass);
     if (user && user.email) {
@@ -71,7 +73,7 @@ const Classes = () => {
         All of Our Classes is here in one page. <br /> Enroll now!!
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3  gap-10">
-        {classes.map((singleClass) => (
+        {approvedClasses.map((singleClass) => (
           <div
             key={singleClass._id}
             className="card w-96 bg-base-100 shadow-xl"

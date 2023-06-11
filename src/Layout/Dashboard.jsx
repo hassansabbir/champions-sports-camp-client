@@ -1,13 +1,19 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import useStudent from "../hooks/useStudent";
 
 const Dashboard = () => {
-  const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor();
-  const [isStudent] = useStudent();
-  console.log(isAdmin, isInstructor, isStudent);
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+  const [isStudent, isStudentLoading] = useStudent();
+  if (isAdminLoading || isInstructorLoading || isStudentLoading) {
+    return (
+      <div className="text-center mt-72">
+        <span className="loading  loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="drawer lg:drawer-open">
@@ -24,39 +30,39 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full pt-20 bg-base-200 text-2xl font-semibold">
-          {isAdmin && (
+          {isAdmin.admin && (
             <>
               <li>
-                <Link to="/dashboard/manageUsers">Manage Users</Link>
+                <NavLink to="/dashboard/manageUsers">Manage Users</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/manageClasses">Manage Classes</Link>
+                <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
               </li>
             </>
           )}
-          {isInstructor && (
+          {isInstructor.instructor && (
             <>
               <li>
-                <Link to="/dashboard/addClass">Add Class</Link>
+                <NavLink to="/dashboard/addClass">Add Class</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/myClasses">My Classes</Link>
+                <NavLink to="/dashboard/myClasses">My Classes</NavLink>
               </li>
             </>
           )}
-          {isStudent && (
+          {isStudent.student && (
             <>
               <li>
-                <Link to="/dashboard/bookmark">Bookmark</Link>
+                <NavLink to="/dashboard/bookmark">Bookmark</NavLink>
               </li>
               <li>
-                <Link to="/dashboard/enrolled">Enrolled</Link>
+                <NavLink to="/dashboard/enrolled">Enrolled</NavLink>
               </li>
             </>
           )}
 
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           {/* <div className="divider"></div> 
           <li>

@@ -11,6 +11,9 @@ import Enrolled from "../Pages/Dashboard/Enrolled/Enrolled";
 import ManageUsers from "../Pages/Dashboard/adminPages/ManageUsers";
 import ManageClasses from "../Pages/Dashboard/adminPages/ManageClasses";
 import AddClass from "../Pages/Dashboard/instructorsPages/AddClass";
+import PrivetRoute from "./PrivetRoute";
+import MyClasses from "../Pages/Dashboard/instructorsPages/MyClasses";
+import Feedback from "../Pages/Dashboard/adminPages/Feedback";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +40,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
     children: [
       {
         path: "manageUsers",
@@ -48,11 +55,18 @@ export const router = createBrowserRouter([
         element: <ManageClasses></ManageClasses>,
       },
       {
+        path: "classes/:id",
+        element: <Feedback></Feedback>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/classes/${params.id}`),
+      },
+      {
         path: "addClass",
         element: <AddClass></AddClass>,
       },
       {
-        path: "manageClasses",
+        path: "myClasses",
+        element: <MyClasses></MyClasses>,
       },
       {
         path: "bookmark",

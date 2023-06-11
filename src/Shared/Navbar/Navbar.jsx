@@ -102,3 +102,13 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//TODO
+// useEffect(() => {
+//   localStorage.setItem("theme", theme);
+//   const localTheme = localStorage.getItem("theme");
+//   document.querySelector("html").setAttribute("data-theme", localTheme);
+//   document
+//     .querySelector("body")
+//     .classList.toggle("text-white", theme === "dark");
+// }, [theme]);

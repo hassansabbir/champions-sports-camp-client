@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 
 const Bookmark = () => {
   const [bookmark, refetch] = useBookmark();
-  const total = bookmark.reduce((sum, item) => item.price + sum, 0).toFixed(2);
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -33,11 +32,10 @@ const Bookmark = () => {
 
   return (
     <div className="w-full text-center">
-      <h2 className="text-5xl font-display font-bold">Bookmarked Classes</h2>
-      <p className="text-3xl my-5">Total Price: {total}</p>
-      <div className="text-end me-16">
-        <button className="btn">Pay</button>
-      </div>
+      <h2 className="text-5xl font-display my-10 font-bold">
+        Bookmarked Classes
+      </h2>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -47,6 +45,7 @@ const Bookmark = () => {
               <th>Photo & Class Name</th>
               <th>Instructor</th>
               <th>Price</th>
+              <th>Enroll Now</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -66,14 +65,11 @@ const Bookmark = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                  {item.instructorName}
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
-                </td>
+                <td>{item.instructorName}</td>
                 <td>$ {item.price}</td>
+                <td>
+                  <button className="btn btn-sm">Pay Now</button>
+                </td>
                 <td>
                   <button
                     onClick={() => handleDelete(item)}
