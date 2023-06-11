@@ -12,6 +12,7 @@ const AddClass = () => {
     const image = form.image.value;
     const instructorName = form.instructorName.value;
     const instructorEmail = form.instructorEmail.value;
+    const totalStudent = parseFloat(form.totalStudent.value);
     const availableSeats = parseFloat(form.availableSeats.value);
     const price = parseFloat(form.price.value);
     const newClass = {
@@ -19,6 +20,7 @@ const AddClass = () => {
       image,
       instructorName,
       instructorEmail,
+      totalStudent,
       availableSeats,
       price,
       status: "pending",
@@ -98,12 +100,24 @@ const AddClass = () => {
         </div>
         <div className="form-control">
           <label className="label">
+            <span className="label-text">Total Student</span>
+          </label>
+          <input
+            type="text"
+            name="totalStudent"
+            placeholder="total students"
+            required
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
             <span className="label-text">Available Seats</span>
           </label>
           <input
             type="text"
             name="availableSeats"
-            placeholder="vailable seats"
+            placeholder="available seats"
             required
             className="input input-bordered"
           />

@@ -94,6 +94,10 @@ const Classes = () => {
                 {singleClass.instructorName}
               </h2>
               <h2>
+                <span className=" text-amber-800">Total Students:</span>{" "}
+                {singleClass.totalStudent}
+              </h2>
+              <h2>
                 <span className=" text-amber-800">Available Seats:</span>{" "}
                 {singleClass.availableSeats}
               </h2>

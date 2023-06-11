@@ -14,6 +14,9 @@ import AddClass from "../Pages/Dashboard/instructorsPages/AddClass";
 import PrivetRoute from "./PrivetRoute";
 import MyClasses from "../Pages/Dashboard/instructorsPages/MyClasses";
 import Feedback from "../Pages/Dashboard/adminPages/Feedback";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import StudentRoute from "./StudentRoute";
 
 export const router = createBrowserRouter([
   {
@@ -48,33 +51,61 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageClasses",
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
       },
       {
         path: "classes/:id",
-        element: <Feedback></Feedback>,
+        element: (
+          <AdminRoute>
+            <Feedback></Feedback>
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/singleClasses/${params.id}`),
       },
       {
         path: "addClass",
-        element: <AddClass></AddClass>,
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "myClasses",
-        element: <MyClasses></MyClasses>,
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "bookmark",
-        element: <Bookmark></Bookmark>,
+        element: (
+          <StudentRoute>
+            <Bookmark></Bookmark>
+          </StudentRoute>
+        ),
       },
       {
         path: "enrolled",
-        element: <Enrolled></Enrolled>,
+        element: (
+          <StudentRoute>
+            <Enrolled></Enrolled>
+          </StudentRoute>
+        ),
       },
     ],
   },
