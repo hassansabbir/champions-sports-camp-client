@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const Feedback = () => {
   const singleClass = useLoaderData();
+  console.log(singleClass);
 
   const handleSendFeedback = (event) => {
     event.preventDefault();

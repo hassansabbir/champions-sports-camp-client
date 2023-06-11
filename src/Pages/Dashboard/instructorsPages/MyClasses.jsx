@@ -23,7 +23,6 @@ const MyClasses = () => {
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Instructor Email</th>
               <th>Available Seats</th>
               <th>Price</th>
               <th>Status</th>
@@ -36,13 +35,10 @@ const MyClasses = () => {
               <tr key={myClass._id}>
                 <th>{index + 1}</th>
                 <td>{myClass.name}</td>
-                <td>{myClass.instructorEmail}</td>
                 <td>{myClass.availableSeats}</td>
                 <td>{myClass.price}</td>
                 <td>{myClass.status}</td>
-                <td>
-                  <button className="btn btn-sm">Feedback</button>
-                </td>
+                <td>{myClass.feedback}</td>
                 <td>
                   <button className="btn btn-circle">
                     <FaEdit className="w-5 h-5" />
