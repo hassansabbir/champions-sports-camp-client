@@ -2,8 +2,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import useStudent from "../hooks/useStudent";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
   const [isStudent, isStudentLoading] = useStudent();
@@ -30,6 +35,21 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full pt-20 bg-base-200 text-2xl font-semibold">
+          <li>
+            <img
+              className="rounded-full"
+              src={user?.photoURL}
+              alt={user?.displayName}
+            />
+          </li>
+          <li className="my-14">
+            <h2 className="mx-auto">{user?.displayName}</h2>
+            <p className="text-lg mx-auto underline">{user?.email}</p>
+          </li>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <div className="divider"></div>
           {isAdmin.admin && (
             <>
               <li>
@@ -65,17 +85,6 @@ const Dashboard = () => {
               </li>
             </>
           )}
-
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          {/* <div className="divider"></div> 
-          <li>
-            <Link to="/classes">
-              <LuLayoutList /> All Classes
-            </Link>
-          </li> */}
-          <div className="divider"></div>
         </ul>
       </div>
     </div>
