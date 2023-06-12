@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const TopClasses = () => {
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const [classes, setClasses] = useState([]);
   useEffect(() => {
     axios
@@ -52,7 +57,19 @@ const TopClasses = () => {
                 </h2>
               </div>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
+                {isAdmin || isInstructor ? (
+                  <Link to="/classes">
+                    <button disabled className="btn text-white bg-amber-800">
+                      Enroll Now
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/classes">
+                    <button className="btn text-white bg-amber-800">
+                      Enroll Now
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

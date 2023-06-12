@@ -4,6 +4,15 @@ import useInstructor from "../hooks/useInstructor";
 import useStudent from "../hooks/useStudent";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import {
+  FaBookmark,
+  FaCheckCircle,
+  FaUsers,
+  FaHistory,
+  FaHome,
+  FaListOl,
+} from "react-icons/fa";
+import { HiFolderAdd, HiViewList } from "react-icons/hi";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -47,40 +56,54 @@ const Dashboard = () => {
             <p className="text-lg mx-auto underline">{user?.email}</p>
           </li>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">
+              <FaHome /> Home
+            </NavLink>
           </li>
           <div className="divider"></div>
           {isAdmin.admin && (
             <>
               <li>
-                <NavLink to="/dashboard/manageUsers">Manage Users</NavLink>
+                <NavLink to="/dashboard/manageUsers">
+                  <FaUsers /> Manage Users
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
+                <NavLink to="/dashboard/manageClasses">
+                  <FaListOl /> Manage Classes
+                </NavLink>
               </li>
             </>
           )}
           {isInstructor.instructor && (
             <>
               <li>
-                <NavLink to="/dashboard/addClass">Add Class</NavLink>
+                <NavLink to="/dashboard/addClass">
+                  <HiFolderAdd /> Add Class
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myClasses">My Classes</NavLink>
+                <NavLink to="/dashboard/myClasses">
+                  <HiViewList /> My Classes
+                </NavLink>
               </li>
             </>
           )}
           {isStudent.student && (
             <>
               <li>
-                <NavLink to="/dashboard/bookmark">Bookmark</NavLink>
+                <NavLink to="/dashboard/bookmark">
+                  <FaBookmark /> Bookmark
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/enrolled">Enrolled</NavLink>
+                <NavLink to="/dashboard/enrolled">
+                  <FaCheckCircle /> Enrolled
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/paymentHistory">
-                  Payment History
+                  <FaHistory /> Payment History
                 </NavLink>
               </li>
             </>

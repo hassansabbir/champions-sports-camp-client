@@ -121,11 +121,13 @@ const ManageClasses = () => {
               </td>
               <td>{cls.status}</td>
               <td>
-                <Link to={`/dashboard/classes/${cls._id}`}>
-                  <button className="btn ">
-                    <FaEdit className="w-5 h-5" />
-                  </button>{" "}
-                </Link>
+                {cls.status === "denied" && (
+                  <Link to={`/dashboard/classes/${cls._id}`}>
+                    <button className="btn ">
+                      <FaEdit className="w-5 h-5" />
+                    </button>{" "}
+                  </Link>
+                )}
               </td>
             </tr>
           ))}

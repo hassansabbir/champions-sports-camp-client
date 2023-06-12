@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useBookmark from "../../hooks/useBookmark";
 import { Helmet } from "react-helmet-async";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import { Fade } from "react-awesome-reveal";
 
 const Classes = () => {
   const [, refetch] = useBookmark();
@@ -11,6 +14,8 @@ const Classes = () => {
   const [classes, setClasses] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   useEffect(() => {
     fetch("https://champions-sports-camp-server.vercel.app/classes")
@@ -73,54 +78,67 @@ const Classes = () => {
       <Helmet>
         <title>Classes || Champions Sports Camp</title>
       </Helmet>
-      <h2 className="text-5xl font-display text-center">
-        All of Our Classes is here in one page. <br /> Enroll now!!
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 my-20 gap-10">
-        {approvedClasses.map((singleClass) => (
-          <div
-            key={singleClass._id}
-            className="card w-96 bg-base-100 shadow-xl"
-          >
-            <figure>
-              <img
-                className="w-96 h-60"
-                src={singleClass?.image}
-                alt={singleClass.name}
-              />
-            </figure>
-            <div className="card-body text-lg font-bold">
-              <h2 className="card-title text-3xl font-bold">
-                {singleClass.name}
-              </h2>
-              <h2>
-                <span className=" text-amber-800">Instructor Name:</span>{" "}
-                {singleClass.instructorName}
-              </h2>
-              <h2>
-                <span className=" text-amber-800">Total Students:</span>{" "}
-                {singleClass.totalStudent}
-              </h2>
-              <h2>
-                <span className=" text-amber-800">Available Seats:</span>{" "}
-                {singleClass.availableSeats}
-              </h2>
-              <h2>
-                <span className=" text-amber-800">Price:</span> ${" "}
-                {singleClass.price}
-              </h2>
-              <div className="card-actions justify-end">
-                <button
-                  onClick={() => handleAddToBookmarks(singleClass)}
-                  className="btn bg-amber-800 text-white"
-                >
-                  Enroll
-                </button>
+      <Fade duration={1000} delay={500} triggerOnce direction="up">
+        <h2 className="text-5xl font-display text-center">
+          All of Our Classes is here in one page. <br /> Enroll now!!{" "}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 my-20 gap-10">
+          {approvedClasses.map((singleClass) => (
+            <div
+              key={singleClass._id}
+              className="card w-96 bg-base-100 shadow-xl"
+            >
+              <figure>
+                <img
+                  className="w-96 h-60"
+                  src={singleClass?.image}
+                  alt={singleClass.name}
+                />
+              </figure>
+              <div className="card-body text-lg font-bold">
+                <h2 className="card-title text-3xl font-bold">
+                  {singleClass.name}
+                </h2>
+                <h2>
+                  <span className=" text-amber-800">Instructor Name:</span>{" "}
+                  {singleClass.instructorName}
+                </h2>
+                <h2>
+                  <span className=" text-amber-800">Total Students:</span>{" "}
+                  {singleClass.totalStudent}
+                </h2>
+                <h2>
+                  <span className=" text-amber-800">Available Seats:</span>{" "}
+                  {singleClass.availableSeats}
+                </h2>
+                <h2>
+                  <span className=" text-amber-800">Price:</span> ${" "}
+                  {singleClass.price}
+                </h2>
+                <div className="card-actions justify-end">
+                  {isAdmin || isInstructor ? (
+                    <button
+                      disabled
+                      onClick={() => handleAddToBookmarks(singleClass)}
+                      className="btn bg-amber-800 text-white"
+                    >
+                      Enroll
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleAddToBookmarks(singleClass)}
+                      className="btn bg-amber-800 text-white"
+                    >
+                      Enroll
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Fade>
     </div>
   );
 };
