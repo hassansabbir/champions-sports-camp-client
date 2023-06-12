@@ -1,12 +1,19 @@
+import { loadStripe } from "@stripe/stripe-js";
 import { useLoaderData } from "react-router-dom";
+import CheckOutForm from "./CheckOutForm";
+import { Elements } from "@stripe/react-stripe-js";
 
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
 
   return (
-    <div>
+    <div className="w-full px-20">
       <h2>Payment is here.</h2>
+      <Elements stripe={stripePromise}>
+        <CheckOutForm price={data.price}></CheckOutForm>
+      </Elements>
     </div>
   );
 };
