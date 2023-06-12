@@ -2,8 +2,9 @@ import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const CheckOutForm = ({ price }) => {
+const CheckOutForm = ({ data, price }) => {
   const stripe = useStripe();
   const { user } = useContext(AuthContext);
   const elements = useElements();
@@ -69,6 +70,31 @@ const CheckOutForm = ({ price }) => {
 
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+
+      const payment = {
+        email: user?.email,
+        enrolledClassId: data.classId,
+        bookmarkId: data._id,
+        enrolledClassName: data.name,
+        transactionId: paymentIntent.id,
+        price,
+        date: new Date(),
+      };
+
+      axios.post("http://localhost:5000/payments", payment).then((res) => {
+        console.log(res.data);
+        if (res.data.deleteResult.deletedCount) {
+          Swal.fire({
+            title: "Payment Completed",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+        }
+      });
     }
   };
 
