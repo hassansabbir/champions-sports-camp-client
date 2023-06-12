@@ -7,11 +7,12 @@ const MyClasses = () => {
 
   const [myClasses, setMyClasses] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/classes/${user.email}`)
+    if (!user?.email) return;
+    fetch(`http://localhost:5000/classes/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyClasses(data));
-    console.log(myClasses);
-  }, []);
+  }, [user?.email]);
+  // console.log(myClasses);
 
   return (
     <div className="w-full">

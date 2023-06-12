@@ -75,9 +75,12 @@ const CheckOutForm = ({ data, price }) => {
         email: user?.email,
         enrolledClassId: data.classId,
         bookmarkId: data._id,
+        image: data.image,
         enrolledClassName: data.name,
+        instructorName: data.instructorName,
         transactionId: paymentIntent.id,
         price,
+        status: "Enrolled",
         date: new Date(),
       };
 

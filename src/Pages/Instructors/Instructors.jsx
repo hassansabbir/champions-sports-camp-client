@@ -35,7 +35,7 @@ const Instructors = () => {
               <h2 className="card-title mx-auto text-2xl font-bold">
                 {instructor.name}
               </h2>
-              <p className="text-2xl">{instructor.email}</p>
+              <p className="text-xl">{instructor.email}</p>
             </div>
           </div>
         ))}

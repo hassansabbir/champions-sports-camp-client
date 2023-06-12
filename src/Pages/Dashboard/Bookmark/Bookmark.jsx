@@ -41,7 +41,7 @@ const Bookmark = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-xl">
               <th>#</th>
               <th>Photo & Class Name</th>
               <th>Instructor</th>
