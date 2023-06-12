@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import { Fade } from "react-awesome-reveal";
+import useStudent from "../../hooks/useStudent";
 
 const Classes = () => {
   const [, refetch] = useBookmark();
@@ -16,6 +17,11 @@ const Classes = () => {
   const location = useLocation();
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
+  console.log(isAdmin, isInstructor, isStudent);
+
+  const student = isStudent?.student;
+  console.log();
 
   useEffect(() => {
     fetch("https://champions-sports-camp-server.vercel.app/classes")
@@ -117,22 +123,13 @@ const Classes = () => {
                   {singleClass.price}
                 </h2>
                 <div className="card-actions justify-end">
-                  {isAdmin || isInstructor ? (
-                    <button
-                      disabled
-                      onClick={() => handleAddToBookmarks(singleClass)}
-                      className="btn bg-amber-800 text-white"
-                    >
-                      Enroll
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleAddToBookmarks(singleClass)}
-                      className="btn bg-amber-800 text-white"
-                    >
-                      Enroll
-                    </button>
-                  )}
+                  <button
+                    disabled={student === false}
+                    onClick={() => handleAddToBookmarks(singleClass)}
+                    className="btn bg-amber-800 text-white"
+                  >
+                    Enroll
+                  </button>
                 </div>
               </div>
             </div>
