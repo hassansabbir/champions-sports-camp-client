@@ -21,7 +21,7 @@ const SocialLogin = () => {
         image: loggedInUser.photoURL,
         role: "student",
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://champions-sports-camp-server.vercel.app/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(saveUserInfo),

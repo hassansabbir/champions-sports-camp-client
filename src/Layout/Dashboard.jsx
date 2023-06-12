@@ -37,7 +37,7 @@ const Dashboard = () => {
         <ul className="menu p-4 w-80 h-full pt-20 bg-base-200 text-2xl font-semibold">
           <li>
             <img
-              className="rounded-full"
+              className="rounded-full w-96 h-56"
               src={user?.photoURL}
               alt={user?.displayName}
             />

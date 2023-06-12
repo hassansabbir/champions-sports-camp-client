@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
+    const res = await fetch(
+      "https://champions-sports-camp-server.vercel.app/users"
+    );
     return res.json();
   });
   console.log(users);
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -29,9 +35,12 @@ const ManageUsers = () => {
   };
 
   const handleMakeInstructor = (user) => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/users/instructor/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -52,6 +61,9 @@ const ManageUsers = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Manage USers || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl font-display text-center font-semibold">
         Manage All Users
       </h2>

@@ -5,14 +5,19 @@ import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const { data: classes = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/classes");
+    const res = await fetch(
+      "https://champions-sports-camp-server.vercel.app/classes"
+    );
     return res.json();
   });
 
   const handleApprove = (cls) => {
-    fetch(`http://localhost:5000/classes/approve/${cls._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/classes/approve/${cls._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(cls.role);
@@ -32,9 +37,12 @@ const ManageClasses = () => {
   };
 
   const handleDenied = (cls) => {
-    fetch(`http://localhost:5000/classes/denied/${cls._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/classes/denied/${cls._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

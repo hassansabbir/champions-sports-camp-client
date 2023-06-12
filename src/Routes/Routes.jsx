@@ -80,7 +80,9 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleClasses/${params.id}`),
+          fetch(
+            `https://champions-sports-camp-server.vercel.app/singleClasses/${params.id}`
+          ),
       },
       {
         path: "addClass",
@@ -110,7 +112,9 @@ export const router = createBrowserRouter([
         path: "payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookmarks/${params.id}`),
+          fetch(
+            `https://champions-sports-camp-server.vercel.app/bookmarks/${params.id}`
+          ),
       },
       {
         path: "enrolled",

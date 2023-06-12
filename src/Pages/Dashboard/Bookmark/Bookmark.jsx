@@ -2,6 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import useBookmark from "../../../hooks/useBookmark";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Bookmark = () => {
   const [bookmark, refetch] = useBookmark();
@@ -17,9 +18,12 @@ const Bookmark = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookmarks/${item._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://champions-sports-camp-server.vercel.app/bookmarks/${item._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -33,6 +37,9 @@ const Bookmark = () => {
 
   return (
     <div className="w-full text-center">
+      <Helmet>
+        <title>Bookmarks || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl font-display my-10 font-bold">
         Bookmarked Classes
       </h2>

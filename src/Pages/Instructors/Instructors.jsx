@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Instructors = () => {
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://champions-sports-camp-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -19,6 +20,9 @@ const Instructors = () => {
 
   return (
     <div className="pt-28">
+      <Helmet>
+        <title>Instructors || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl font-display text-center my-10">
         Our Top Instructors
       </h2>

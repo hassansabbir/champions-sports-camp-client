@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaEdit } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
@@ -8,7 +9,9 @@ const MyClasses = () => {
   const [myClasses, setMyClasses] = useState([]);
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:5000/classes/${user?.email}`)
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/classes/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyClasses(data));
   }, [user?.email]);
@@ -16,6 +19,9 @@ const MyClasses = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>My Classes || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl text-center my-20 font-display">
         My Added Classes
       </h2>

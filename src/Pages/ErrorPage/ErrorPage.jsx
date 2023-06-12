@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import errorPage from "../../assets/errorPage.png";
 
 const ErrorPage = () => {
@@ -9,6 +10,12 @@ const ErrorPage = () => {
         The page you are trying to find is not found. Check your internet
         connection and URL and try again.
       </p>
+      <Link to="/">
+        {" "}
+        <button className="btn btn-outline btn-md px-10 bg-amber-800 text-white">
+          Back to Home
+        </button>
+      </Link>
     </div>
   );
 };

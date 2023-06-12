@@ -12,11 +12,14 @@ const Feedback = () => {
     const sendFeedback = { feedback };
     console.log(sendFeedback);
 
-    fetch(`http://localhost:5000/classes/${singleClass._id}`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(sendFeedback),
-    })
+    fetch(
+      `https://champions-sports-camp-server.vercel.app/classes/${singleClass._id}`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(sendFeedback),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

@@ -3,6 +3,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useBookmark from "../../hooks/useBookmark";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const [, refetch] = useBookmark();
@@ -12,7 +13,7 @@ const Classes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://champions-sports-camp-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -33,7 +34,7 @@ const Classes = () => {
         price: singleClass.price,
         email: user.email,
       };
-      fetch("http://localhost:5000/bookmarks", {
+      fetch("https://champions-sports-camp-server.vercel.app/bookmarks", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(bookmarkedItem),
@@ -69,6 +70,9 @@ const Classes = () => {
 
   return (
     <div className="pt-28">
+      <Helmet>
+        <title>Classes || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl font-display text-center">
         All of Our Classes is here in one page. <br /> Enroll now!!
       </h2>

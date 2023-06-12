@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const SignUp = () => {
             email: data.email,
             role: "student",
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://champions-sports-camp-server.vercel.app/users", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(savedUserInfo),
@@ -68,6 +69,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Sign Up || Champions Sports Camp</title>
+      </Helmet>
       <h1 className="text-6xl pt-36 text-center mx-auto font-display w-9/12">
         Welcome to our <br /> Sports Academies Summer Camp <br />
       </h1>

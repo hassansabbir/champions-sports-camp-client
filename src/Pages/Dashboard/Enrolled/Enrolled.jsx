@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Enrolled = () => {
   const [myEnrolled, setMyEnrolled] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/payments")
+      .get("https://champions-sports-camp-server.vercel.app/payments")
       .then((data) => setMyEnrolled(data.data));
   }, []);
 
   return (
     <div>
+      <Helmet>
+        <title>Enrolled || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl font-display font-semibold text-center">
         My Enrolled Classes
       </h2>

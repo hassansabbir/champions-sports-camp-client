@@ -5,9 +5,11 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 const TopInstructorPage = () => {
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/users").then((data) => {
-      setInstructors(data.data.filter((dt) => dt.role === "instructor"));
-    });
+    axios
+      .get("https://champions-sports-camp-server.vercel.app/users")
+      .then((data) => {
+        setInstructors(data.data.filter((dt) => dt.role === "instructor"));
+      });
   }, []);
 
   return (
@@ -17,7 +19,10 @@ const TopInstructorPage = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 my-20">
         {instructors.slice(0, 6).map((instructor) => (
-          <div key={instructor._id} className="card w-96 bg-base-100 shadow-xl">
+          <div
+            key={instructor._id}
+            className="card w-96 bg-base-100 hover:shadow-2xl shadow-xl"
+          >
             <figure>
               <img
                 className="w-96 h-60"

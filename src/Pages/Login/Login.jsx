@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -39,6 +40,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Login || Champions Sports Camp</title>
+      </Helmet>
       <h1 className="text-6xl pt-36 text-center mx-auto font-display w-9/12">
         Welcome to our <br /> Sports Academies Summer Camp <br />
       </h1>

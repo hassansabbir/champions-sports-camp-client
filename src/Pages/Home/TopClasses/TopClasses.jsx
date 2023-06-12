@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 const TopClasses = () => {
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/classes").then((data) => {
-      setClasses(data.data.filter((dt) => dt.status === "approved"));
-    });
+    axios
+      .get("https://champions-sports-camp-server.vercel.app/classes")
+      .then((data) => {
+        setClasses(data.data.filter((dt) => dt.status === "approved"));
+      });
   }, []);
 
   return (
@@ -18,7 +20,7 @@ const TopClasses = () => {
         {classes.slice(0, 6).map((singleClass) => (
           <div
             key={singleClass._id}
-            className="card card-compact w-96 bg-base-100 shadow-xl"
+            className="card card-compact w-96 bg-base-100 hover:shadow-2xl shadow-xl"
           >
             <figure>
               <img

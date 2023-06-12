@@ -27,7 +27,7 @@ const AddClass = () => {
     };
     console.log(newClass);
 
-    fetch("http://localhost:5000/classes", {
+    fetch("https://champions-sports-camp-server.vercel.app/classes", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(newClass),

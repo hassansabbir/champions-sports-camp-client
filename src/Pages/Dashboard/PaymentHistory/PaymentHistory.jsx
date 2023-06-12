@@ -1,15 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import moment from "moment";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
   const [allPayment, setAllPayment] = useState([]);
   axios
-    .get("http://localhost:5000/payments")
+    .get("https://champions-sports-camp-server.vercel.app/payments")
     .then((data) => setAllPayment(data.data));
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Payment History || Champions Sports Camp</title>
+      </Helmet>
       <h2 className="text-5xl text-center font-semibold font-display">
         Payment History
       </h2>

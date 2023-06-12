@@ -9,7 +9,7 @@ const useBookmark = () => {
     queryKey: ["bookmarks", user?.email],
     queryFn: async () => {
       const response = await fetch(
-        `http://localhost:5000/bookmarks?email=${user?.email}`
+        `https://champions-sports-camp-server.vercel.app/bookmarks?email=${user?.email}`
       );
       return response.json();
     },

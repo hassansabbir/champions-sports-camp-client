@@ -16,9 +16,12 @@ const CheckOutForm = ({ data, price }) => {
   useEffect(() => {
     if (price > 0) {
       axios
-        .post("http://localhost:5000/create-payment-intent", {
-          price: price,
-        })
+        .post(
+          "https://champions-sports-camp-server.vercel.app/create-payment-intent",
+          {
+            price: price,
+          }
+        )
         .then((res) => setClientSecret(res.data.clientSecret))
         .catch((err) => console.log(err));
     }
@@ -84,20 +87,25 @@ const CheckOutForm = ({ data, price }) => {
         date: new Date(),
       };
 
-      axios.post("http://localhost:5000/payments", payment).then((res) => {
-        console.log(res.data);
-        if (res.data.deleteResult.deletedCount) {
-          Swal.fire({
-            title: "Payment Completed",
-            showClass: {
-              popup: "animate__animated animate__fadeInDown",
-            },
-            hideClass: {
-              popup: "animate__animated animate__fadeOutUp",
-            },
-          });
-        }
-      });
+      axios
+        .post(
+          "https://champions-sports-camp-server.vercel.app/payments",
+          payment
+        )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.deleteResult.deletedCount) {
+            Swal.fire({
+              title: "Payment Completed",
+              showClass: {
+                popup: "animate__animated animate__fadeInDown",
+              },
+              hideClass: {
+                popup: "animate__animated animate__fadeOutUp",
+              },
+            });
+          }
+        });
     }
   };
 
