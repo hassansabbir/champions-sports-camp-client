@@ -63,8 +63,10 @@ const ManageClasses = () => {
 
   return (
     <div className="w-full">
+      <h2 className="text-5xl font-display text-center my-20 font-semibold">
+        Manage All Added Classes
+      </h2>
       <table className="table">
-        {/* head */}
         <thead>
           <tr>
             <th>#</th>

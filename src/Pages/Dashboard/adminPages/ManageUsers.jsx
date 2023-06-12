@@ -60,18 +60,18 @@ const ManageUsers = () => {
   console.log("helloo world");
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Helmet>
         <title>Manage USers || Champions Sports Camp</title>
       </Helmet>
-      <h2 className="text-5xl font-display text-center font-semibold">
+      <h2 className="text-5xl font-display my-20 text-center font-semibold">
         Manage All Users
       </h2>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>
-            <tr>
+            <tr className="text-xl">
               <th>#</th>
               <th>Name</th>
               <th>email</th>
