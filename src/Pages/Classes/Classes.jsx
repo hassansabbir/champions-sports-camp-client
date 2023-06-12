@@ -20,9 +20,6 @@ const Classes = () => {
   const [isStudent] = useStudent();
   console.log(isAdmin, isInstructor, isStudent);
 
-  const student = isStudent?.student;
-  console.log();
-
   useEffect(() => {
     fetch("https://champions-sports-camp-server.vercel.app/classes")
       .then((res) => res.json())
@@ -114,17 +111,28 @@ const Classes = () => {
                   <span className=" text-amber-800">Total Students:</span>{" "}
                   {singleClass.totalStudent}
                 </h2>
-                <h2>
-                  <span className=" text-amber-800">Available Seats:</span>{" "}
-                  {singleClass.availableSeats}
-                </h2>
+                {singleClass.availableSeats === 0 ? (
+                  <h2 className="bg-red-500 p-1 text-white">
+                    <span className=" text-white">Available Seats:</span>{" "}
+                    {singleClass.availableSeats}
+                  </h2>
+                ) : (
+                  <h2>
+                    <span className=" text-amber-800">Available Seats:</span>{" "}
+                    {singleClass.availableSeats}
+                  </h2>
+                )}
                 <h2>
                   <span className=" text-amber-800">Price:</span> ${" "}
                   {singleClass.price}
                 </h2>
                 <div className="card-actions justify-end">
                   <button
-                    disabled={student === false}
+                    disabled={
+                      isAdmin?.admin === true ||
+                      isInstructor?.instructor === true ||
+                      singleClass.availableSeats === 0
+                    }
                     onClick={() => handleAddToBookmarks(singleClass)}
                     className="btn bg-amber-800 text-white"
                   >

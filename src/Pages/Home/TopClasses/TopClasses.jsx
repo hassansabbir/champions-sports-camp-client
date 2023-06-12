@@ -57,19 +57,18 @@ const TopClasses = () => {
                 </h2>
               </div>
               <div className="card-actions justify-end">
-                {isAdmin || isInstructor ? (
-                  <Link to="/classes">
-                    <button disabled className="btn text-white bg-amber-800">
-                      Enroll Now
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to="/classes">
-                    <button className="btn text-white bg-amber-800">
-                      Enroll Now
-                    </button>
-                  </Link>
-                )}
+                <Link to="/classes">
+                  <button
+                    disabled={
+                      isAdmin?.admin === true ||
+                      isInstructor?.instructor === true ||
+                      singleClass.availableSeats === 0
+                    }
+                    className="btn text-white bg-amber-800"
+                  >
+                    Enroll Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
